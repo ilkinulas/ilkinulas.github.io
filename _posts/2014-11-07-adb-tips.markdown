@@ -40,7 +40,7 @@ By default <code>logcat</code> output format is:
 * <code>adb logcat -v threadtime -s "SpadesPlus"</code> : Displays logs with tag "SpadesPlus" with information about the thread writing the log message.
 
 ## adb push/pull
-Command below copies (uploads) "my_moview.mp4" file to the Movies directory on the sdcard of the attached device. No need to open a file manager!
+Command below copies (uploads) "my_movie.mp4" file to the Movies directory on the sdcard of the attached device. No need to open a file manager!
 {% highlight bash %}
 tututil:~ ilkinulas$ adb push ~/Downloads/my_movie.mp4 /sdcard/Movies
 2171 KB/s (75515666 bytes in 33.959s)
@@ -52,7 +52,7 @@ tututil:~ ilkinulas$ adb pull /sdcard/Movies/my_movie.mp4
 {% endhighlight %}
 
 ## adb shell
-Android devices come with a shell program that you can use to execute commands. To enter a remote shell on a device/emulator just type <code>adb shell</code>. To exit the remote shell type "exit" or "CTRL+D". You can also issue single commands without entering a remote shell <code>adb shell $commandName</code>:
+Android devices come with a shell program that you can use to execute commands. To enter a remote shell on a device/emulator just type <code>adb shell</code>. To exit the remote shell type "exit" or "CTRL+D". You can also issue single commands without entering a remote shell:
 {% highlight bash %}
 tututil:~ ilkinulas$ adb shell ps | grep net.peakgames
 u0_a315   29833 1935  524728 21908 ffffffff 00000000 S net.peakgames.mobile.goalgame.android
@@ -68,7 +68,8 @@ u0_a431   29929 1935  661340 43428 ffffffff 00000000 S net.peakgames.mobile.spad
 
 ### am (activity manager)
 
-I am going to show you how to dump heap of a running android application and analyze the heap using [Eclipse Memory Analyser](http://www.eclipse.org/mat/downloads.php)
+I am going to show you how to dump heap of a running android application and analyze the heap using [Eclipse Memory Analyser](http://www.eclipse.org/mat/downloads.php).
+
 First start the activity you want to monitor. In my case I am starting a game that we developed at [Peak Games](http://www.peakgames.net) whose package name is <code>net.peakgames.mobile.spades.android</code>.
 
 {% highlight sh %}
@@ -82,7 +83,7 @@ tututil:~ ilkinulas$ adb shell ps|grep net.peakgames.mobile.spades
 u0_a447   8196  1938  669308 40732 ffffffff 00000000 S net.peakgames.mobile.spades.android
 {% endhighlight %}
 
-Process id of the application is 8196. I am going to dump the heap of this process to a file on the sdcard, copy the dump file to my computer and convert it to standart file format that profiler (in our case Eclipse Memory Analyser) with the [hprof-conv](http://developer.android.com/tools/help/hprof-conv.html) tool.
+Process id of the application is 8196. I am going to dump the heap of this process to a file on the sdcard, copy the dump file to my computer and convert it to standart file format that a profiler (in our case Eclipse Memory Analyser) can parse and display with the [hprof-conv](http://developer.android.com/tools/help/hprof-conv.html) tool.
 
 {% highlight bash %}
 tututil:~ ilkinulas$ adb shell am dumpheap 8196 /sdcard/temp/spades-heap.dump
@@ -94,3 +95,5 @@ tututil:~ ilkinulas$ hprof-conv spades-heap.dump spades-heap.hprof
 Here is a screenshot of the heap dump opened with Eclipse Memory Analyzer Tool.
 
 ![MAT screenshot](https://lh6.googleusercontent.com/RhDtkJRNsITL7bhFrP8w-F19pSo0IfMJQl6R1WRVslLFpEqBIjhBGyQrivQ2vqK9Nufl7KQ6UIs=w2560-h1962)
+
+Easy, don't you think ;)
