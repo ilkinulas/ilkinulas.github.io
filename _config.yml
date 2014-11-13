@@ -1,5 +1,5 @@
 # Site settings
-title:       All your base are belong to us. 
+title:       All your base are belong to us.
 email:       ilkinulas@gmail.com
 author:      İlkin Ulaş Balkanay
 description: ""
@@ -15,7 +15,7 @@ show_related_posts: false
 show_post_footers:  false
 
 # Social icons
-show_social_icons: true 
+show_social_icons: true
 github_username: ilkinulas
 twitter_username: ilkinulas
 google_plus_id: 100720094307560318548
@@ -29,4 +29,4 @@ markdown:     kramdown
 permalink:    pretty
 paginate:     3
 sass:
-  compressed: true
+compressed: true
