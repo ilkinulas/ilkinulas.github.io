@@ -94,6 +94,6 @@ tututil:~ ilkinulas$ hprof-conv spades-heap.dump spades-heap.hprof
 
 Here is a screenshot of the heap dump opened with Eclipse Memory Analyzer Tool.
 
-![MAT screenshot](https://lh6.googleusercontent.com/RhDtkJRNsITL7bhFrP8w-F19pSo0IfMJQl6R1WRVslLFpEqBIjhBGyQrivQ2vqK9Nufl7KQ6UIs=w2560-h1962)
+![MAT screenshot](http://drive.google.com/uc?export=view&id=0B3D9FLuaG8DNcmpGb3BPWVptR2c)
 
 Easy, don't you think ;)
