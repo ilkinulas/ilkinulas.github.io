@@ -39,6 +39,54 @@ By default <code>logcat</code> output format is:
 * <code>adb logcat -v raw</code> : Displays developer log message without any other meta-data
 * <code>adb logcat -v threadtime -s "SpadesPlus"</code> : Displays logs with tag "SpadesPlus" with information about the thread writing the log message.
 
+### ndk-stack
+_ndk-stack_ is a tool that is distributed with the Android NDK. It allows you to filter stack traces as they appear in the output of 'adb logcat' and replace any address inside a shared library (*.so files) with the corresponding values.
+<code>
+Usage : adb logcat|ndk-stack -sym obj/local/armeabi/
+<code>
+
+Here is an example:
+ndk-stack will translate something like
+
+{% highlight bash %}
+I/DEBUG   ( 1935): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+I/DEBUG   ( 1935): Build fingerprint: 'samsung/t03gxx/t03g:4.3/JSS15J/N7100XXUENB2:user/release-keys'
+I/DEBUG   ( 1935): Revision: '11'
+I/DEBUG   ( 1935): pid: 18705, tid: 18724, name: Thread-1076  >>> net.peakgames.Trivia <<<
+I/DEBUG   ( 1935): signal 11 (SIGSEGV), code 2 (SEGV_ACCERR), fault addr 646d8250
+...
+...
+...
+I/DEBUG   ( 1935): backtrace:
+I/DEBUG   ( 1935):     #00  pc 0013b250  <unknown>
+I/DEBUG   ( 1935):     #01  pc 000a12d9  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (WidgetGroup::visualize()+24)
+I/DEBUG   ( 1935):     #02  pc 0008e601  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (QuizStage::visualize()+252)
+I/DEBUG   ( 1935):     #03  pc 0009f54d  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (MultiStageApplication::visualize()+12)
+I/DEBUG   ( 1935):     #04  pc 00092ee7  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (TriviaApp::visualize()+302)
+I/DEBUG   ( 1935):     #05  pc 00094c81  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (Java_net_peakgames_Trivia_JNILib_Step+176)
+I/DEBUG   ( 1935):     #06  pc 0001ea50  /system/lib/libdvm.so (dvmPlatformInvoke+116)
+I/DEBUG   ( 1935):     #07  pc 0004f667  /system/lib/libdvm.so (dvmCallJNIMethod(unsigned int const*, JValue*, Method const*, Thread*)+398)
+I/DEBUG   ( 1935):     #08  pc 00000214  /dev/ashmem/dalvik-jit-code-cache (deleted)
+{% endhighlight %}
+
+into more readable output (see the line numbers in the stack stace?): 
+
+{% highlight bash %}
+********** Crash dump: **********
+Build fingerprint: 'samsung/t03gxx/t03g:4.3/JSS15J/N7100XXUENB2:user/release-keys'
+pid: 18705, tid: 18724, name: Thread-1076  >>> net.peakgames.Trivia <<<
+signal 11 (SIGSEGV), code 2 (SEGV_ACCERR), fault addr 646d8250
+Stack frame #00  pc 0013b250  <unknown>
+Stack frame #01  pc 000a12d9  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (WidgetGroup::visualize()+24): Routine visualize in ../../../../Engine/WidgetGroup.cpp:105
+Stack frame #02  pc 0008e601  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (QuizStage::visualize()+252): Routine visualize in ../../QuizStage.cpp:1002
+Stack frame #03  pc 0009f54d  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (MultiStageApplication::visualize()+12): Routine visualize in ../../../../Engine/MultiStageApplication.cpp:61
+Stack frame #04  pc 00092ee7  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (TriviaApp::visualize()+302): Routine visualize in ../../TriviaApp.cpp:357
+Stack frame #05  pc 00094c81  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (Java_net_peakgames_Trivia_JNILib_Step+176): Routine Java_net_peakgames_Trivia_JNILib_Step in ../../android/AndroidMain.cpp:198
+Stack frame #06  pc 0001ea50  /system/lib/libdvm.so (dvmPlatformInvoke+116)
+Stack frame #07  pc 0004f667  /system/lib/libdvm.so (dvmCallJNIMethod(unsigned int const*, JValue*, Method const*, Thread*)+398)
+Stack frame #08  pc 00000214  /dev/ashmem/dalvik-jit-code-cache (deleted)
+{% endhighlight %}
+
 ## adb push/pull
 Command below copies (uploads) "my_movie.mp4" file to the Movies directory on the sdcard of the attached device. No need to open a file manager!
 {% highlight bash %}
