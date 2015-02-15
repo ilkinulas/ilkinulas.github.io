@@ -69,7 +69,7 @@ I/DEBUG   ( 1935):     #07  pc 0004f667  /system/lib/libdvm.so (dvmCallJNIMethod
 I/DEBUG   ( 1935):     #08  pc 00000214  /dev/ashmem/dalvik-jit-code-cache (deleted)
 {% endhighlight %}
 
-into more readable output (see the line numbers in the stack stace?): 
+into more readable output (see the line numbers in the stack stace?):
 
 {% highlight bash %}
 ********** Crash dump: **********
@@ -107,6 +107,32 @@ u0_a315   29833 1935  524728 21908 ffffffff 00000000 S net.peakgames.mobile.goal
 u0_a414   29884 1935  521944 21608 ffffffff 00000000 S net.peakgames.mobile.rummi.android
 u0_a431   29929 1935  661340 43428 ffffffff 00000000 S net.peakgames.mobile.spades.android
 {% endhighlight %}
+
+### enable/disable wifi (command line)
+With the <code>adb shell</code> command you can enable/disable wifi connection of the device. (requires root)
+
+{% highlight bash %}
+ilkinulas$ adb root
+restarting adbd as root
+ilkinulas$ adb shell svc wifi disable
+{% endhighlight %}
+
+This command disables wifi connection of the device from the command line.
+
+### Screen recording
+
+You can record the display of the device (running Android 4.4 or higher) with the help of <code>screenrecord</code> command. Here's an example:
+
+{% highlight bash %}
+adb shell screenrecord /sdcard/recording_1.mp4
+{% endhighlight %}
+
+You can also specify quality of the recording with the <code>--bit-rate</code> parameter.
+
+{% highlight bash %}
+adb shell screenrecord --bit-rate 8000000 /sdcard/recording_2.mp4
+{% endhighlight %}
+
 
 ### pm (package manager)
 "<code>adb shell pm $command</code>"  performs actions on application packages installed on your device. To see the detailed help just type <code>adb shell pm</code>.
