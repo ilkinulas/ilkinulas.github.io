@@ -1,0 +1,173 @@
+---
+layout: post
+title:  "adb Tips"
+date:   2016-02-03 06:28:38 +0200
+categories: android
+---
+
+The official [Android Developers](http://developer.android.com/tools/help/adb.html) page has a detailed documentation about Android Debug Bridge (adb). This post summarizes the adb commands that I (an android game developer) use daily.
+
+## adb devices
+If you have more than one device/emulator attached to your computer you must specify on which device/emulator the adb command will run. <code>adb devices</code> command lists all the attached devices.
+{% highlight bash %}
+tututil:~ ilkinulas$ adb devices
+List of devices attached
+4df1574456e59feb	device
+emulator-5554	device
+{% endhighlight %}
+You can direct a command to a specific device with the <code>-s</code> option:
+{% highlight bash %}
+tututil:~ ilkinulas$ adb -s 4df1574456e59feb  install  ~/Downloads/SpadesPlus.apk
+{% endhighlight %}
+
+## adb logcat
+Filter the logs of a specific [tag](http://developer.android.com/reference/android/util/Log.html#d(java.lang.String, java.lang.String)):
+{% highlight bash %}
+tututil:~ ilkinulas$ adb logcat -s "SpadesPlus"
+{% endhighlight %}
+Mute all the logs except "SpadesPlus" and "HeartsPlus" tags:
+{% highlight bash %}
+tututil:~ ilkinulas$ adb logcat SpadesPlus:D HeartsPlus:D *:S
+{% endhighlight %}
+
+By default <code>logcat</code> output format is:
+
+> priority/tag(process id) : log message
+
+<code>-v</code> option lets you specify output format. For example :
+
+* <code>adb logcat -v raw</code> : Displays developer log message without any other meta-data
+* <code>adb logcat -v threadtime -s "SpadesPlus"</code> : Displays logs with tag "SpadesPlus" with information about the thread writing the log message.
+
+### ndk-stack
+_ndk-stack_ is a tool that is distributed with the Android NDK. It allows you to filter stack traces as they appear in the output of 'adb logcat' and replace any address inside a shared library (*.so files) with the corresponding values.
+<code>
+Usage : adb logcat|ndk-stack -sym obj/local/armeabi/
+<code>
+
+Here is an example:
+ndk-stack will translate something like
+
+{% highlight bash %}
+I/DEBUG   ( 1935): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+I/DEBUG   ( 1935): Build fingerprint: 'samsung/t03gxx/t03g:4.3/JSS15J/N7100XXUENB2:user/release-keys'
+I/DEBUG   ( 1935): Revision: '11'
+I/DEBUG   ( 1935): pid: 18705, tid: 18724, name: Thread-1076  >>> net.peakgames.Trivia <<<
+I/DEBUG   ( 1935): signal 11 (SIGSEGV), code 2 (SEGV_ACCERR), fault addr 646d8250
+...
+...
+...
+I/DEBUG   ( 1935): backtrace:
+I/DEBUG   ( 1935):     #00  pc 0013b250  <unknown>
+I/DEBUG   ( 1935):     #01  pc 000a12d9  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (WidgetGroup::visualize()+24)
+I/DEBUG   ( 1935):     #02  pc 0008e601  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (QuizStage::visualize()+252)
+I/DEBUG   ( 1935):     #03  pc 0009f54d  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (MultiStageApplication::visualize()+12)
+I/DEBUG   ( 1935):     #04  pc 00092ee7  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (TriviaApp::visualize()+302)
+I/DEBUG   ( 1935):     #05  pc 00094c81  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (Java_net_peakgames_Trivia_JNILib_Step+176)
+I/DEBUG   ( 1935):     #06  pc 0001ea50  /system/lib/libdvm.so (dvmPlatformInvoke+116)
+I/DEBUG   ( 1935):     #07  pc 0004f667  /system/lib/libdvm.so (dvmCallJNIMethod(unsigned int const*, JValue*, Method const*, Thread*)+398)
+I/DEBUG   ( 1935):     #08  pc 00000214  /dev/ashmem/dalvik-jit-code-cache (deleted)
+{% endhighlight %}
+
+into more readable output (see the line numbers in the stack stace?):
+
+{% highlight bash %}
+********** Crash dump: **********
+Build fingerprint: 'samsung/t03gxx/t03g:4.3/JSS15J/N7100XXUENB2:user/release-keys'
+pid: 18705, tid: 18724, name: Thread-1076  >>> net.peakgames.Trivia <<<
+signal 11 (SIGSEGV), code 2 (SEGV_ACCERR), fault addr 646d8250
+Stack frame #00  pc 0013b250  <unknown>
+Stack frame #01  pc 000a12d9  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (WidgetGroup::visualize()+24): Routine visualize in ../../../../Engine/WidgetGroup.cpp:105
+Stack frame #02  pc 0008e601  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (QuizStage::visualize()+252): Routine visualize in ../../QuizStage.cpp:1002
+Stack frame #03  pc 0009f54d  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (MultiStageApplication::visualize()+12): Routine visualize in ../../../../Engine/MultiStageApplication.cpp:61
+Stack frame #04  pc 00092ee7  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (TriviaApp::visualize()+302): Routine visualize in ../../TriviaApp.cpp:357
+Stack frame #05  pc 00094c81  /data/app-lib/net.peakgames.Trivia-2/libTrivia.so (Java_net_peakgames_Trivia_JNILib_Step+176): Routine Java_net_peakgames_Trivia_JNILib_Step in ../../android/AndroidMain.cpp:198
+Stack frame #06  pc 0001ea50  /system/lib/libdvm.so (dvmPlatformInvoke+116)
+Stack frame #07  pc 0004f667  /system/lib/libdvm.so (dvmCallJNIMethod(unsigned int const*, JValue*, Method const*, Thread*)+398)
+Stack frame #08  pc 00000214  /dev/ashmem/dalvik-jit-code-cache (deleted)
+{% endhighlight %}
+
+## adb push/pull
+Command below copies (uploads) "my_movie.mp4" file to the Movies directory on the sdcard of the attached device. No need to open a file manager!
+{% highlight bash %}
+tututil:~ ilkinulas$ adb push ~/Downloads/my_movie.mp4 /sdcard/Movies
+2171 KB/s (75515666 bytes in 33.959s)
+{% endhighlight %}
+Similarly you can copy (download) a file from the attached android device to your computer:
+{% highlight bash %}
+tututil:~ ilkinulas$ adb pull /sdcard/Movies/my_movie.mp4
+4213 KB/s (75515666 bytes in 17.501s)
+{% endhighlight %}
+
+## adb shell
+Android devices come with a shell program that you can use to execute commands. To enter a remote shell on a device/emulator just type <code>adb shell</code>. To exit the remote shell type "exit" or "CTRL+D". You can also issue single commands without entering a remote shell:
+{% highlight bash %}
+tututil:~ ilkinulas$ adb shell ps | grep net.peakgames
+u0_a315   29833 1935  524728 21908 ffffffff 00000000 S net.peakgames.mobile.goalgame.android
+u0_a414   29884 1935  521944 21608 ffffffff 00000000 S net.peakgames.mobile.rummi.android
+u0_a431   29929 1935  661340 43428 ffffffff 00000000 S net.peakgames.mobile.spades.android
+{% endhighlight %}
+
+### enable/disable wifi (command line)
+With the <code>adb shell</code> command you can enable/disable wifi connection of the device. (requires root)
+
+{% highlight bash %}
+ilkinulas$ adb root
+restarting adbd as root
+ilkinulas$ adb shell svc wifi disable
+{% endhighlight %}
+
+This command disables wifi connection of the device from the command line.
+
+### Screen recording
+
+You can record the display of the device (running Android 4.4 or higher) with the help of <code>screenrecord</code> command. Here's an example:
+
+{% highlight bash %}
+adb shell screenrecord /sdcard/recording_1.mp4
+{% endhighlight %}
+
+You can also specify quality of the recording with the <code>--bit-rate</code> parameter.
+
+{% highlight bash %}
+adb shell screenrecord --bit-rate 8000000 /sdcard/recording_2.mp4
+{% endhighlight %}
+
+
+### pm (package manager)
+"<code>adb shell pm $command</code>"  performs actions on application packages installed on your device. To see the detailed help just type <code>adb shell pm</code>.
+
+* <code>adb shell pm list packages</code> lists all the installed packages (apps).
+* <code>adb shell pm uninstall $packagename</code> uninstalls the specified package.
+
+### am (activity manager)
+
+I am going to show you how to dump heap of a running android application and analyze the heap using [Eclipse Memory Analyser](http://www.eclipse.org/mat/downloads.php).
+
+First start the activity you want to monitor. In my case I am starting a game that we developed at [Peak Games](http://www.peakgames.net) whose package name is <code>net.peakgames.mobile.spades.android</code>.
+
+{% highlight bash %}
+tututil:~ ilkinulas$ adb shell am start -n net.peakgames.mobile.spades.android/.SpadesPlusActivity
+Starting: Intent { cmp=net.peakgames.mobile.spades.android/.SpadesPlusActivity }
+{% endhighlight %}
+
+I need to find the process id of the application that I just started.
+{% highlight bash %}
+tututil:~ ilkinulas$ adb shell ps|grep net.peakgames.mobile.spades
+u0_a447   8196  1938  669308 40732 ffffffff 00000000 S net.peakgames.mobile.spades.android
+{% endhighlight %}
+
+Process id of the application is 8196. I am going to dump the heap of this process to a file on the sdcard, copy the dump file to my computer and convert it to standart file format that a profiler (in our case Eclipse Memory Analyser) can parse and display with the [hprof-conv](http://developer.android.com/tools/help/hprof-conv.html) tool.
+
+{% highlight bash %}
+tututil:~ ilkinulas$ adb shell am dumpheap 8196 /sdcard/temp/spades-heap.dump
+tututil:~ ilkinulas$ adb pull /sdcard/temp/spades-heap.dump
+4137 KB/s (9381544 bytes in 2.214s)
+tututil:~ ilkinulas$ hprof-conv spades-heap.dump spades-heap.hprof
+{% endhighlight %}
+
+Here is a screenshot of the heap dump opened with Eclipse Memory Analyzer Tool.
+
+![MAT screenshot](http://drive.google.com/uc?export=view&id=0B3D9FLuaG8DNcmpGb3BPWVptR2c)
+
+That's it for now. Keep calm and know your tools.

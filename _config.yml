@@ -1,0 +1,12 @@
+# Site settings
+title: All Your Base Are Belong To Us
+email: ilkinulas@gmail.com
+description: > # 
+  This is where @ilkinulas writes about staff that he cares about.
+baseurl: ""
+url: "http://ilkinulas.github.io" # the base hostname & protocol for your site
+twitter_username: ilkinulas
+github_username:  ilkinulas
+
+# Build settings
+markdown: kramdown
