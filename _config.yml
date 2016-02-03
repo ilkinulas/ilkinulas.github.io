@@ -1,32 +1,12 @@
 # Site settings
-title:       All your base are belong to us.
-email:       ilkinulas@gmail.com
-author:      İlkin Ulaş Balkanay
-description: ""
-baseurl:     ""
-url:         "http://ilkinulas.github.io"
-
-# Google analytics
-google_analytics:
-
-# Optional features
-animated:           false
-show_related_posts: false
-show_post_footers:  false
-
-# Social icons
-show_social_icons: true
-github_username: ilkinulas
+title: All Your Base Are Belong To Us
+email: ilkinulas@gmail.com
+description: > # 
+  This is where @ilkinulas writes about staff that he cares about.
+baseurl: ""
+url: "http://ilkinulas.github.io" # the base hostname & protocol for your site
 twitter_username: ilkinulas
-google_plus_id: 100720094307560318548
-linkedin_username:
-bitcoin_url:
-paypal_url:
-flattr_button:
+github_username:  ilkinulas
 
 # Build settings
-markdown:     kramdown
-permalink:    pretty
-paginate:     3
-sass:
-compressed: true
+markdown: kramdown

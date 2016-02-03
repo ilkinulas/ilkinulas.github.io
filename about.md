@@ -1,5 +1,5 @@
 ---
 layout: page
-title: İlkin Ulaş Balkanay
+title: About
 permalink: /about/
 ---

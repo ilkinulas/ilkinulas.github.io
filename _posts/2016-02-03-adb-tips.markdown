@@ -1,10 +1,10 @@
 ---
-layout:     post
-title:      adb Tips
-date:       2014-11-07 23:26
-summary:    Android debugging bridge (adb) tips for android developers
+layout: post
+title:  "adb Tips"
+date:   2016-02-03 06:28:38 +0200
 categories: android
 ---
+
 The official [Android Developers](http://developer.android.com/tools/help/adb.html) page has a detailed documentation about Android Debug Bridge (adb). This post summarizes the adb commands that I (an android game developer) use daily.
 
 ## adb devices
@@ -146,7 +146,7 @@ I am going to show you how to dump heap of a running android application and ana
 
 First start the activity you want to monitor. In my case I am starting a game that we developed at [Peak Games](http://www.peakgames.net) whose package name is <code>net.peakgames.mobile.spades.android</code>.
 
-{% highlight sh %}
+{% highlight bash %}
 tututil:~ ilkinulas$ adb shell am start -n net.peakgames.mobile.spades.android/.SpadesPlusActivity
 Starting: Intent { cmp=net.peakgames.mobile.spades.android/.SpadesPlusActivity }
 {% endhighlight %}
@@ -170,4 +170,4 @@ Here is a screenshot of the heap dump opened with Eclipse Memory Analyzer Tool.
 
 ![MAT screenshot](http://drive.google.com/uc?export=view&id=0B3D9FLuaG8DNcmpGb3BPWVptR2c)
 
-Easy, don't you think ;)
+That's it for now. Keep calm and know your tools.
