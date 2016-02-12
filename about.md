@@ -6,7 +6,7 @@ permalink: /about/
 
 ![ilkin ulas Balkanay](/assets/about/cover_about_page.jpg)
 
-Hi, I am Ilkin Balkanay.
+Hi, I am Ilkin Balkanay. 
 
 I work at [PeakGames](http://www.peakgames.net) where we build awesome games.
 
