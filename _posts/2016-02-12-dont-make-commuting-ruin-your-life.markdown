@@ -5,13 +5,13 @@ date: 2016-02-12 05:33 +0200
 categories: life
 ---
 
-Commuting to work is something inevitable for me. I've been spending nearly three hours a day on my way between home and work. It is almost one fifth of my awake life. Or in other words 40 days in a year. That's a lot time to waste.
+Commuting to work is something inevitable for me. I've been spending nearly three hours a day on my way between home and work. It is almost one fifth of my awake life. Or in other words 40 days in a year. That's a lot of time to waste.
 
-Aside from reading books and playing games on my phone, I listen to podcasts and watch YouTube videos while commuting to work. In this post I like to share the podcasts I listen and how I watch YouTube videos offline (in the subway).
+Aside from reading books and playing games on my phone, I listen to podcasts and watch YouTube videos while commuting to work. In this post I like to share the **podcasts** I listen and how I watch **YouTube videos offline** (in the subway).
 	
 
 # Podcasts I Like
-I am using [Pocketcast](http://www.shiftyjelly.com/pocketcasts) android app to listen to podcast. 
+I am using [Pocketcast](http://www.shiftyjelly.com/pocketcasts) android app to listen to podcast. It’s a feature-rich, powerful app that makes subscribing to podcasts and setting up automatic downloads a snap. It also syncs across devices and platforms (IOS, Android and web), making it ideal if you move between an Android phone and an iPad.
 
 List of Podcasts I like to listen:
 <table>
@@ -144,4 +144,4 @@ For example to download this inspiring talk from [Scott Hanselman](http://www.ha
 youtube_download.py https://www.youtube.com/watch?v=FS1mnISoG7U
 {% endhighlight %}
 
-
+Hope these tips make your commute bearable!
