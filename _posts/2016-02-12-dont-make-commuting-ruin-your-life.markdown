@@ -108,7 +108,7 @@ List of Podcasts I like to listen:
 			<img src="/assets/podcasts/thoughtworks.jpg" width="100" height="100" class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
-			A podcast by Toughtworkers. They usually talk about software development and software development processes. <a href="https://www.thoughtworks.com/">https://www.thoughtworks.com/</a>
+			A podcast by Thoughtworkers. They usually talk about software development and software development processes. <a href="https://www.thoughtworks.com/">https://www.thoughtworks.com/</a>
 		</td>		
 	</tr>		
 </table>
