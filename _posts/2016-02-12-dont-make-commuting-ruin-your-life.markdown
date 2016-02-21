@@ -17,7 +17,7 @@ List of Podcasts I like to listen:
 <table>
 	<tr>
 		<td class="podcastImage">
-			<img src="/assets/podcasts/adb.jpg" width="100" height="100"  class="thinborder"/> 
+			<img src="/assets/podcasts/adb.jpg"  class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
 			Android Backstage, a podcast by and for Android developers. Hosted by developers from the Android engineering team, this show covers topics of interest to Android programmers, with in-depth discussions and interviews with engineers on the Android team at Google. <a href="http://androidbackstage.blogspot.com">http://androidbackstage.blogspot.com</a>
@@ -25,7 +25,7 @@ List of Podcasts I like to listen:
 	</tr>
 	<tr>
 		<td class="podcastImage"> 
-			<img src="/assets/podcasts/developer_on_fire.jpg" width="100" height="100" class="thinborder"/> 
+			<img src="/assets/podcasts/developer_on_fire.jpg" class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
 			Podcast with inspiring interviews with successful software developers, architects, testers, and other professionals with stories of success, failure, excellence, and inspiration. <a href="http://developeronfire.com">http://developeronfire.com</a>
@@ -33,7 +33,7 @@ List of Podcasts I like to listen:
 	</tr>
 	<tr>
 		<td class="podcastImage">
-			<img src="/assets/podcasts/devpod.jpg" width="100" height="100" class="thinborder"/> 
+			<img src="/assets/podcasts/devpod.jpg"  class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
 			Turkish developer podcast where they talk about mostly web technologies and writing good software. <a href="http://devpod.org/">http://devpod.org/</a>
@@ -41,7 +41,7 @@ List of Podcasts I like to listen:
 	</tr>
 	<tr>
 		<td class="podcastImage">
-			<img src="/assets/podcasts/fragmented.jpg" width="100" height="100" class="thinborder"/> 
+			<img src="/assets/podcasts/fragmented.jpg" class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
 			Fragmented is the Android developer podcast where Donn Felker and Kaushik Gopal talk about building good software and becoming better Android developers. <a href="http://fragmentedpodcast.com/">http://fragmentedpodcast.com/</a>
@@ -49,7 +49,7 @@ List of Podcasts I like to listen:
 	</tr>
 	<tr>
 		<td class="podcastImage">
-			<img src="/assets/podcasts/hanselminutes.jpg" width="100" height="100" class="thinborder"/> 
+			<img src="/assets/podcasts/hanselminutes.jpg" class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
 			Hanselminutes - Fresh Air for Developers is a weekly talk show that brings interesting people together to talk about the web, culture, education, technology and more. Hosted by Scott Hanselman, this show promises fresh ideas and great people. <a href="http://www.hanselminutes.com/">http://www.hanselminutes.com/</a>
@@ -57,7 +57,7 @@ List of Podcasts I like to listen:
 	</tr>
 	<tr>
 		<td class="podcastImage">
-			<img src="/assets/podcasts/kacik_prens.jpg" width="100" height="100" class="thinborder"/> 
+			<img src="/assets/podcasts/kacik_prens.jpg" class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
 			A Turkish podcast about everything related to life and relations. Two old friends are talking about psychology and everyday life (in a funny way)<a href="http://kacikprens.blogspot.com.tr/">http://kacikprens.blogspot.com.tr/</a>
@@ -65,7 +65,7 @@ List of Podcasts I like to listen:
 	</tr>
 	<tr>
 		<td class="podcastImage">
-			<img src="/assets/podcasts/offheap.jpg" width="100" height="100" class="thinborder"/> 
+			<img src="/assets/podcasts/offheap.jpg"  class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
 			The Java Pub House Off-Heap Podcast brings together the latest tech news for the java professions. Speakers go over the news and current issues and discuss them in depth, bringing the knowledge of a top circle of professionals from Chicago.<a href="http://www.javaoffheap.com/">http://www.javaoffheap.com/</a>
@@ -73,7 +73,7 @@ List of Podcasts I like to listen:
 	</tr>
 	<tr>
 		<td class="podcastImage">
-			<img src="/assets/podcasts/se_radio.jpg" width="100" height="100" class="thinborder"/> 
+			<img src="/assets/podcasts/se_radio.jpg"  class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
 			Software Engineering Radio is a podcast targeted at the professional software developer. The goal is to be a lasting educational resource, not a newscast. Every 10 days, a new episode is published that covers all topics software engineering. Episodes are either tutorials on a specific topic, or an interview with a well-known character from the software engineering world. <a href="http://www.se-radio.net/">http://www.se-radio.net/</a>
@@ -81,7 +81,7 @@ List of Podcasts I like to listen:
 	</tr>
 	<tr>
 		<td class="podcastImage">
-			<img src="/assets/podcasts/debug_log.jpg" width="100" height="100" class="thinborder"/> 
+			<img src="/assets/podcasts/debug_log.jpg" class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
 			A podcast about game development in Unity3D. <a href="http://thedebuglog.com/">http://thedebuglog.com/</a>
@@ -89,7 +89,7 @@ List of Podcasts I like to listen:
 	</tr>	
 	<tr>
 		<td class="podcastImage">
-			<img src="/assets/podcasts/ted_talks.jpg" width="100" height="100" class="thinborder"/> 
+			<img src="/assets/podcasts/ted_talks.jpg" class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
 			This is a video feed of popular and recent TED conferences and TEDx events. <a href="http://www.ted.com/talks/list">http://www.ted.com/talks/list</a>
@@ -97,7 +97,7 @@ List of Podcasts I like to listen:
 	</tr>
 	<tr>
 		<td class="podcastImage">
-			<img src="/assets/podcasts/teknoseyir.jpg" width="100" height="100" class="thinborder"/> 
+			<img src="/assets/podcasts/teknoseyir.jpg" class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
 			A weekly Turkish podcast that talks about all kind of technology news. <a href="https://teknoseyir.com/">https://teknoseyir.com/</a>
@@ -105,7 +105,7 @@ List of Podcasts I like to listen:
 	</tr>
 	<tr>
 		<td class="podcastImage">
-			<img src="/assets/podcasts/thoughtworks.jpg" width="100" height="100" class="thinborder"/> 
+			<img src="/assets/podcasts/thoughtworks.jpg" class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
 			A podcast by Thoughtworkers. They usually talk about software development and software development processes. <a href="https://www.thoughtworks.com/">https://www.thoughtworks.com/</a>
