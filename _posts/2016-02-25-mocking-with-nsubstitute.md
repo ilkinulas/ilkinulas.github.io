@@ -126,4 +126,4 @@ For further reading you should check the [official NSubstitute Documentation](ht
 
 There is also a blog post by Unity Technologies which explains testing with mocks in Unity3D. [UNIT TESTING AT THE SPEED OF LIGHT WITH UNITY TEST TOOLS](http://blogs.unity3d.com/2014/07/28/unit-testing-at-the-speed-of-light-with-unity-test-tools/)
 
-In the next post we are going to dive into Integration Testing. By then keep calm and enjoy unit testing.
+In the next post we are going to dive into Dependency Injection. By then keep calm and enjoy unit testing.

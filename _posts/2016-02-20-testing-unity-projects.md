@@ -20,9 +20,9 @@ Here is a poem which puts emphasis on the importance of writing automated tests 
 
 This series of posts is for Unity3D game developers who wants to write automated tests for their game projects.
 
-+ Part I    - Unit testing and Unity Test Tools
-+ Part II   - Mocking with NSubstitude
-+ Part III  - Writing testable code for Unity3D
++ Part I    - [Unit testing and Unity Test Tools (this post)](/programming/unity/2016/02/20/testing-unity-projects.html)
++ Part II   - [Mocking with NSubstitude](/programming/unity/2016/02/25/mocking-with-nsubstitute.html)
++ Part III  - [Dependency Injection (Writing Testable Code)](/programming/unity/2016/03/05/dependency-injection-for-unity3d-projects.html)
 + Part IV   - Integration tests in Unity3D
 
 
@@ -84,6 +84,3 @@ Finally, while writing unit tests always keep in mind that a good unit test :
 + must be **isolated**. Tests should not rely on each other.
 + must be written as carefully as production code. Developers should follow the same standard of good-design for their test code. No duplication, tests with good names, etc. And tests should be versioned as same as production code.
 + should **test only one thing** at a time. (Multiple assertions in a single unit test is fine but when a test fails it should spot the location of the problem.)
-
-
-

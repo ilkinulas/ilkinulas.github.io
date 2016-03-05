@@ -15,3 +15,5 @@ I live in Istanbul.
 I love to build software that works. 
 
 I used to blog at [http://ilkinbalkanay.blogspot.com.tr](http://ilkinbalkanay.blogspot.com.tr).
+
+This is a personal weblog. The opinions expressed here represent my own and not those of my employer. **All my opinions are belong to me.**
