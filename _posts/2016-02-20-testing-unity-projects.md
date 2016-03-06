@@ -21,7 +21,7 @@ Here is a poem which puts emphasis on the importance of writing automated tests 
 This series of posts is for Unity3D game developers who wants to write automated tests for their game projects.
 
 + Part I    - [Unit testing and Unity Test Tools (this post)](/programming/unity/2016/02/20/testing-unity-projects.html)
-+ Part II   - [Mocking with NSubstitude](/programming/unity/2016/02/25/mocking-with-nsubstitute.html)
++ Part II   - [Mocking with NSubstitute](/programming/unity/2016/02/25/mocking-with-nsubstitute.html)
 + Part III  - [Dependency Injection (Writing Testable Code)](/programming/unity/2016/03/05/dependency-injection-for-unity3d-projects.html)
 + Part IV   - Integration tests in Unity3D
 
