@@ -56,3 +56,5 @@ Here is the full script. **RequireComponent** attribute automatically adds requi
 And picture below shows the final cube. 
 
 ![Cube Vertices](/assets/dynamic_meshes/cube_unity_screenshot.png){: .center-image }
+
+[Next post](/development/unity/2016/05/06/uv-mapping.html) shows how to apply a texture to the cube mesh we have just created.
