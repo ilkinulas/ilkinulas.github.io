@@ -13,7 +13,7 @@ First things first, **use prefabs for everything**. This makes it easy to work o
 
 Link prefabs to prefabs, do no link instances to prefabs. I'll try to explain this with an example.
 
-![Apk contents](/assets/prefabs/prefab_link_1.png){: .center-image }
+![linked prefabs](/assets/prefabs/prefab_link_1.png){: .center-image }
 
 Picture above contains 4 different screenshots of hieararchy and the inspector view of the unity editor. 
 
