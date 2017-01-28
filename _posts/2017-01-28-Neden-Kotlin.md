@@ -3,10 +3,9 @@ layout: post
 title: Neden Kotlin?
 categories: development kotlin
 ---
-![kotlin logo](/assets/neden_kotlin/logo_Kotlin.png){: .center-image }
 
 ## Neden olmasin?
-[JetBrains](http://www.jetbrains.com/) 6 yil once Kotlin programlama dili uzerinde calismaya baslamis ve **Kotlin 1.0** 'in [duyurulmasinin](https://blog.jetbrains.com/kotlin/2016/02/kotlin-1-0-released-pragmatic-language-for-jvm-and-android/) uzerinden 1 yil gecmis. Bu yaziyi Kotlin'i henuz kullanmamis Java developer'lari Kotlin'i en azindan bir kere denemeleri icin kaleme aliyorum. Yeni bir programlama dili ogrenmenin kime ne zarari olabilir ki? Kotlin ogrenmenin soyle bir yan etkisi olabiliyor bastan soyleyeyim : Bir daha Java ile kod yazmak istemeyebilirsiniz.
+[JetBrains](http://www.jetbrains.com/) 6 yil once Kotlin programlama dili uzerinde calismaya baslamis ve **Kotlin 1.0** 'in [duyurulmasinin](https://blog.jetbrains.com/kotlin/2016/02/kotlin-1-0-released-pragmatic-language-for-jvm-and-android/) uzerinden 1 yil gecmis. Bu yaziyi Kotlin'i henuz denememis olan Java yazilimcilarinin Kotlin'i en azindan bir kere denemeleri icin kaleme aliyorum. Yeni bir programlama dili ogrenmenin kime ne zarari olabilir ki? Kotlin ogrenmenin soyle bir yan etkisi olabiliyor bastan soyleyeyim : Bir daha Java ile kod yazmak istemeyebilirsiniz.
 
 2002 yilindan beri profesyonel olarak, cok sevdigim Java programla dili ile uygulamalar gelistiriyorum. Java ile web uygulamalari, [telekom sunuculari](https://en.wikipedia.org/wiki/Online_charging_system) ve [mobil oyunlar](http://www.peakgames.net) gelistirmis birisi olarak keske Java programlama diline su ozelligi de ekleseler dedigim herseyi Kotlin'de buldugumu soyleyebilirim. Birazdan bunlardan kisa kisa bahsedecegim. 
 
@@ -22,7 +21,9 @@ Java Sanal Makinesi (JVM), [java bytecode](https://en.wikipedia.org/wiki/Java_by
 
  JVM'in bedavadan yukaridaki ozellikleri sunmasi JVM uzerinde calisabilen Java'dan baska bircok dilin dogmasina yol acmistir. Popupler JVM dillerinden bazilari : Kotlin, Clojure, Scala, JRuby, Jython, Groovy, LuaJ.
 
-Simdi tekrar Kotlin'e geri donelim. 
+![kotlin logo](/assets/neden_kotlin/logo_Kotlin.png){: .center-image }
+
+Simdi tekrar Kotlin'e geri donelim. Kotlin'in ogrenmeye deger bir programlama dili oldugunu dusunuyorum cunku;
 
 ### 1. Statically Typed
 
@@ -70,7 +71,7 @@ s=s1 // Hata !!
 {% endhighlight %}
 
 
-Kotlin official dokumantasyonunda null reference'tan [Billion dolar mistake](https://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions) olarak bahseder. Kotlin type sistemi daha detayli bir yaziyi hakediyor. Bu yazida daha fazla detaya girmeyecegim.
+Kotlin official dokumantasyonunda null reference'tan [Billion dolar mistake](https://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions) olarak bahsediliyor. Kotlin type sistemi daha detayli bir yaziyi hakediyor. Bu yazida daha fazla detaya girmeyecegim.
 
 ### 4. Kotlin ile Daha Az Satir Kod
 
