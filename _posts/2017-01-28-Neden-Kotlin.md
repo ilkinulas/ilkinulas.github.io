@@ -3,7 +3,6 @@ layout: post
 title: Neden Kotlin?
 categories: development kotlin
 ---
-![kotlin logo](/assets/neden_kotlin/logo_Kotlin.png){: .center-image }
 
 ## Neden olmasin?
 [JetBrains](http://www.jetbrains.com/) 6 yil once Kotlin programlama dili uzerinde calismaya baslamis ve **Kotlin 1.0** 'in [duyurulmasinin](https://blog.jetbrains.com/kotlin/2016/02/kotlin-1-0-released-pragmatic-language-for-jvm-and-android/) uzerinden 1 yil gecmis. Bu yaziyi Kotlin'i henuz kullanmamis Java developer'lari Kotlin'i en azindan bir kere denemeleri icin kaleme aliyorum. Yeni bir programlama dili ogrenmenin kime ne zarari olabilir ki? Kotlin ogrenmenin soyle bir yan etkisi olabiliyor bastan soyleyeyim : Bir daha Java ile kod yazmak istemeyebilirsiniz.
@@ -21,6 +20,8 @@ Java Sanal Makinesi (JVM), [java bytecode](https://en.wikipedia.org/wiki/Java_by
  * __Monitoring tools__ : Sanal makinenin durumunu izlemek icin ve daha performansli calismasini saglamak icin bir cok arac mevcut. [VisualVM](http://visualvm.java.net/), [JProfiler](http://www.ej-technologies.com/products/jprofiler/overview.html), [GCViewer](http://www.tagtraum.com/gcviewer.html), [jmap](http://docs.oracle.com/javase/7/docs/technotes/tools//share/jmap.html), [jstack](http://docs.oracle.com/javase/7/docs/technotes/tools//share/jstack.html) bunlardan sadece bazilari.
 
  JVM'in bedavadan yukaridaki ozellikleri sunmasi JVM uzerinde calisabilen Java'dan baska bircok dilin dogmasina yol acmistir. Popupler JVM dillerinden bazilari : Kotlin, Clojure, Scala, JRuby, Jython, Groovy, LuaJ.
+
+![kotlin logo](/assets/neden_kotlin/logo_Kotlin.png){: .center-image }
 
 Simdi tekrar Kotlin'e geri donelim. 
 
