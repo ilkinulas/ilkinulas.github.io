@@ -91,6 +91,14 @@ Kotlin bu ozelliklerin hic birisini sifirdan icat etmedi. Java programcilarinin 
 
 Kotlin compiler Java 6 uyumlu bytecode uretir. Bu sayede Kotlin ile Android uygulamalari gelistirmek mumkun. (PeakGames'te java ile gelistirdigimiz oyunlara yeni ozellikler eklerken Kotlin kullaniyoruz.)
 
+Kotlin'in Android ile ilgili planlarina [bu linkten](https://blog.jetbrains.com/kotlin/2016/03/kotlins-android-roadmap/) ulasabilirsiniz. Ozetle:
+
+  * Kotlin standart library'nin metod sayisini azaltmaya calisiyorlar. Bildiginiz gibi Android uygulamalarinda (multi dex kullanmiyorsaniz) 64K metod sayisi limiti var. Bu yuzden APK'nin icine girecek kutuphanelerin metod sayisi onemli. Ben bu yaziyi hazirlarken toplam metod sayisi toplam 7191'di : Kotlin Standart Libarary 6289, Kotlin Runtime 902.  <a href="http://www.methodscount.com/?lib=org.jetbrains.kotlin%3Akotlin-stdlib%3A1.0.0"><img src="https://img.shields.io/badge/Methods and size-core: 6289 | deps: 902 | 636 KB-e91e63.svg"/></a>
+
+  * Gradle build'lerinde incremental compilation destekleniyor. Bu sayede sadece degisen siniflar ve degisen siniflari kullanan siniflar derlendigi icin build sureleri kisaliyor.
+
+  * [Jack & Jill](http://tools.android.com/tech-docs/jackandjill) ve Instant Run ozellikleri henuz tam anlamiyla desteklenmiyor. Fakat roadmap'te var.
+
 ### 6. IDE destegi
 
 JetBrains tarafindan gelistirilen bir programlama dili oldugu icin __IntelliJ Idea__ Kotlin destegi ile beraber geliyor. Ayrica Eclipse'ten vazgecemeyenler icin de [Eclipse plugin](https://marketplace.eclipse.org/content/kotlin-plugin-eclipse) mevcut. 
