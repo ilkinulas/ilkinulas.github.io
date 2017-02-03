@@ -72,7 +72,7 @@ s=s1 // Hata !!
 {% endhighlight %}
 
 
-Kotlin official dokümantasyonunda null reference'tan [Billion dolar mistake](https://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions) olarak bahsediliyor. Kotlin type sistemi daha detaylı bir yazıyı hakediyor. Bu yazıda daha fazla detaya girmeyeceğim.
+Kotlin official dokümantasyonunda null reference'tan [Billion dolar mistake](https://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions) olarak bahsediliyor. Kotlin type sistemi daha detaylı bir yazıyı hakediyor. Bu yazıda daha fazla detaya girmeyeceğim. [Bu linkte](/development/kotlin/2017/01/29/Kotlin-Types.html) daha detaylı bilgi var.
 
 ### 4. Kotlin ile Daha Az Satır Kod
 
