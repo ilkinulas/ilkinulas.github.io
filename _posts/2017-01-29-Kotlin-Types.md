@@ -3,13 +3,19 @@ layout: post
 title: Kotlin Types
 categories: development kotlin
 ---
+> Teknik konular hakkında Türkçe yazmak gerçekten çok zor. Bir çok kelimenin Türkçe karşılığını 
+> bulmakta zorlanıyorum. Yarı Türkçe yarı İngilizce yazmak hiç hoşuma gitmese de aklımdakileri bir 
+> an önce yazıya döküp paylaşmak için şimdilik çok fazla kafaya takmadan yazıyorum. Kimse kusura bakmasın lütfen.
 
 Bir önceki [yazımda](/development/kotlin/2017/01/28/Neden-Kotlin.html) Kotlin'in **statik** 'type' sistemli ve **güvenli** bir programlama dili olduğunu söylemiştim. Bu yazıda, ne demek istediğimi daha detaylı bir şekilde açıklamaya çalışacağım.
 
-Kotlin'de class hiyerarşinin en tepesinde **Any** vardır. Hiçbir sınıftan türemeyen (super class'ı olmayan) bir sınıf oluşturursanız bu sınıfın super class'ı otomatik olarak 'Any' olur. Bire bir aynısı olmasa da Any'yi java'daki **Object** sınıfı olarak düşünebiliriz. 
+## kotlin.Any ve Sınıf Hiyerarşisi
+
+Kotlin'de class hiyerarşinin en tepesinde **Any** vardır. Hiçbir sınıftan türemeyen (super class'ı olmayan) bir sınıf oluşturursanız bu sınıfın super class'ı otomatik olarak _Any_ olur. Bire bir aynısı olmasa da _Any_'yi java'daki **Object** sınıfı olarak düşünebiliriz. 
 
 ![Any](/assets/kotlin_types/any_class_diagram.png){: .center-image }
-Şekildeki gibi bir sınıf hiyerarşisini aşağıdaki gibi oluşturabiliriz.
+
+Şekildeki gibi bir sınıf hiyerarşisini aşağıdaki Kotlin sınıfları ile oluşturabiliriz.
 
 {% highlight java %}
 open class View(var position: Vector3)
@@ -30,6 +36,55 @@ val view : View = ImageView(Vector3(1,1,1)) // ok
 val anotherImageView : ImageView = view // ERROR
 {% endhighlight %}
 
+## kotlin.Unit
+
+Kotlin __expression-oriented__ bir programlama dili oldugu için her statement bir değer döndürmek zorundadır. Örneğin __if__ ve __when__ birer expression'dır.
+
+{% highlight java %}
+val max = if (a > b) a else b
+
+val dayString = when(dayOfWeek) {
+    1 -> "Pazartesi"
+    2 -> "Sali"
+    3 -> "Carsamba"
+    4 -> "Persembe"
+    5 -> "Cuma"
+    6 -> "Cumartesi"
+    7 -> "Pazar"
+    else -> "N/A"
+}
+{% endhighlight %}
+
+Kotlin bu yönüyle Java'dan ayrılır, functional programlama dillerine yakınlaşır. If statement'ların java'da bir değer döndürmediklerini zaten biliyoruz. Yukarıdaki Kotlin __if__ statement örneğini Java'da yazmaya kalkarsak derleyici aşağıdaki gibi bir hata verecektir.
+
+![java if statement](/assets/kotlin_types/if_java.png){: .center-image }
+
+Java'daki __void__ 'un karşılığı Kotlin'de __Unit__'tir. Geriye birşey döndürme ihtiyacı olmayan fonksiyonların (sadece side effect'i olan fonksiyonlar) __return__ tipi __Unit__ olur.
+
+{% highlight java %}
+fun printMessage(message: String?) : Unit {
+    System.out.println(message)
+}
+{% endhighlight %}
+
+Fonksiyonları tanımlarken Unit return tipini yazmak zorunda değiliz. Yukarıdaki __printMessage__ fonksiyonunu _Unit_ kullanmadan da yazabiliriz.
+
+{% highlight java %}
+fun printMessage(message: String?) {
+    System.out.println(message)
+}
+{% endhighlight %}
+
+## kotlin.Nothing
+
+Kotlin standart library içerisinde __Nothing__ diye de bir sınıf var. Bu özel sınıf tüm sınıf hiyerarşinin en altında yer alıyor. Eğer bir fonksiyon bir değer üretmiyorsa (sonsuz bir döngüyse ya da exception throw ediyorsa) return tipi olarak _Nothing_ kullanılabilir. Bu sayede IDE'ler ya da derleyiciler __Nothing__ dönen fonsiyonlardan sonra çalışacak kodlar için __unreachable code__ uyarısı yapabilirler.
+
+{% highlight java %}
+fun error() : Nothing = throw RuntimeException("Crashed!")
+{% endhighlight %}
+
+## Kotlin'de Primitive Tipler Yok
+
 Kotlin'de Java'daki _int_, _long_, _float_ gibi _primitive_ tipler yoktur. Herşey metodunu çağırabileceğimiz bir object'tir. Java'daki primitive tip olan _int_'e karşılık Kotlin'de _Int_ vardır ve _Int_ super-type'ı _Any_ olan bir sınıftır. Primitive tiplerin olmamasi memory kulanimi açısından problem olabilir diye endişelenmeye gerek yok çünkü Kotlin Compiler, Int (ve diğer built-in tipler Long, Float, Double, Byte ...) için gerekli optimizasyonunu yapmaktadır. Örneğin aşağıdaki kotlin ve java kodları derlendiğinde aynı byte code oluşur.
 
 {% highlight java %}
@@ -43,6 +98,8 @@ int x = 5;
 int y = 4;
 int z = x + y;
 {% endhighlight %}
+
+## Elveda NullPointerException
 
 Kotlin'in güvenli bir programalama dili olmasını sağlayan bir diğer özelliği de tiplerin _"non null"_ ya da _"nullable"_ olarak tanımlanabilmesidir. Örneğin _Int_ ve _Int?_ farklı tiplerdir fakat _Int_'i _Int?_'ın sub-type'ı olarak düşünebiliriz.
 
@@ -108,5 +165,4 @@ fun npe() {
 }
 {% endhighlight %}
 
-Son olarak, biz kotlin tarafında güvende olsak da kullandığımız Java kodunun NullPointerException'lara sebep olabileceğini unutmamak lazım.
-
+Ayrıca java dünyasından çağırdığımız fonksiyonların da NullPointerException fırlatma potansiyeli olduğunu unutmamak gerekir.
