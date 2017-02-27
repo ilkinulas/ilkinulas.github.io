@@ -3,12 +3,8 @@ layout: post
 title: Kotlin Extensions
 categories: development kotlin
 ---
-C# programlama dilinden tanıdığımız [Extension Method'ları](https://msdn.microsoft.com/library/bb383977.aspx), Kotlin de [destekliyor](https://kotlinlang.org/docs/reference/extensions.html). Extension'lar sayesinde : 
-
-- yeni bir türetilmiş tip yaratmadan (extend etmeden) 
-- mevcut tipi değiştirip tekrar derlemeden 
-
-mevcut tiplere yeni özellikler ekleyebiliriz.   
+C# programlama dilinden tanıdığımız [Extension Method'ları](https://msdn.microsoft.com/library/bb383977.aspx), Kotlin de [destekliyor](https://kotlinlang.org/docs/reference/extensions.html). Extension'lar sayesinde  (1) yeni bir türetilmiş tip yaratmadan (extend etmeden) 
+(2) mevcut tipi değiştirip tekrar derlemeden, mevcut tiplere yeni özellikler ekleyebiliriz.   
 
 Aşağıdaki örnekte _java.util.Date_ sınıfı için yazılmış _isSunday()_ extension'ı var:
 
