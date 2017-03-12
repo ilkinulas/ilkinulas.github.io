@@ -8,7 +8,7 @@ C# programlama dilinden tanıdığımız [Extension Method'ları](https://msdn.m
 
 Aşağıdaki örnekte _java.util.Date_ sınıfı için yazılmış _isSunday()_ extension'ı var:
 
-{% highlight java %}
+{% highlight kotlin %}
 fun Date.isSunday(): Boolean {
     val calendar = Calendar.getInstance()
     calendar.timeInMillis = time
@@ -62,7 +62,7 @@ Extension metodu kullanırsak IDE bize aşağıdaki resimdeki gibi bir kıyak ya
 
 _java.sql.Date_, _java.util.Date_ sınıfından türetilmiş bir sınıftır. Sizce aşağıdaki kod bloğu çalıştırılırsa ekrana ne yazar?
 
-{% highlight java %}
+{% highlight kotlin %}
 fun java.util.Date.hhmm(): String {
     return "java.util.Date ${SimpleDateFormat("HH:mm").format(this)}"
 }
@@ -105,7 +105,7 @@ Extension metod'ları ayrı bir dosyaya ya da kullanmak istediğiniz bir sınıf
 
 gibi kendi package'ları altında (namespace) tanımlamak.
 
-{% highlight java %}
+{% highlight kotlin %}
 @file:JvmName("LibGDXExtensions")
 package net.peakgames.extensions.libgdx
 

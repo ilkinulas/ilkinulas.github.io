@@ -40,7 +40,7 @@ Kotlin'den Java'yı ve Java'dan Kotlin'i çağırmak mumkun. Bu iki farklı duny
 Java çok popüler bir programala dili olduğu için her ihtiyaca göre yazılmış kütüphaneler bulmak çok kolay (3rd party jars). Kotlin ile yazdığınız kodlar bu kütüphaneleınr hepsini kullanabilir. Örneğin:
 
 
-{% highlight java %}
+{% highlight kotlin %}
 import org.apache.commons.io.FileUtils
 import java.io.File
 
@@ -57,14 +57,14 @@ import java.io.File
 ### 3. Kotlin ile Güvendesiniz. Elveda NPE!
 Kotlin'de __Nullable__ ve __Non-Null__ Type sistemin bir parçasıdır. Bu sayede Kotlin compiler null olabilecek referanslar ile asla null olamayacak referansları ayırt edebilir.
 
-{% highlight java %}
+{% highlight kotlin %}
 var s:String = null // Hata !!
 //Compiler der ki : null can not be a value of a non-null type String
 {% endhighlight %}
 
 Bir değişkene null referans atamak isterseniz tipin sonuna __?__ (soru işareti) eklemeniz gerekir. Örneğin __String?__ nullable string demektir ve Kotlin icin __String__ ve __String?__ birbirinden farklı iki tiptir. 
 
-{% highlight java %}
+{% highlight kotlin %}
 var s:String="test"
 var s1:String? = null
 s=s1 // Hata !!

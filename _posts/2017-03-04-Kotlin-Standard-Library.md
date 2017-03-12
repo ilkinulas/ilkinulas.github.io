@@ -6,7 +6,7 @@ excerpt_separator: <!--more-->
 ---
 `Kotlin Standard Library`, Kotlin ile kod yazarken sürekli başvurulan bir araç kutusu olarak düşünülebilir. Standard Library ile ilgili dokümanlara [buradan](https://kotlinlang.org/api/latest/jvm/stdlib/), kaynak koduna da [buradan](https://github.com/JetBrains/kotlin/tree/master/libraries/stdlib) ulaşabilirsiniz. JDK üzerine inşa edilmiş ve JDK'nın Kotlin ile kullanılmasını sağlayan Standard Library içerisinde:
 
-- Collection ve Sequence sınıflarının kullanımını kolaylaştıran [extension metodları](development/kotlin/2017/02/11/Kotlin-Extensions.html)
+- Collection ve Sequence sınıflarının kullanımını kolaylaştıran [extension metodları](/development/kotlin/2017/02/11/Kotlin-Extensions.html)
 - String, char dizileri ve regular expression'lar için extension'lar ve yardımcı sınıflar
 - JDK içindeki  `IO`, `threading` ve dosya sistemi ile ilgili sınıfların Kotlin'den rahatça kullanılmasını sağlayan extension'lar ve yardımcı sınıflar
 - Bu yazıda üzerinde duracağımız, Kotlin'e özgü özel kalıplar yazmamızı sağlayan `let` `apply` `with` `use`, `synchronized` gibi `higher-order function`lar vardır.
@@ -16,7 +16,7 @@ excerpt_separator: <!--more-->
 ### Higher-Order Functions
 `Higher-order` fonksiyonlar, kısaca HOF, bir ya da birden fazla fonksiyonu parametere olarak alabilen ve/veya sonuç olarak başka bir fonksiyonu dönebilen fonksiyonlardır.
 
-{% highlight java %}
+{% highlight kotlin %}
 fun greaterThan(n: Int): (Int) -> Boolean {
     return fun(x: Int) = x > n
 }
@@ -47,13 +47,13 @@ Kotlin standard library ile gelen bazı higher-order fonksiyonlardan bahsedeceğ
 
 # TODO ()
 
-{% highlight java %}
+{% highlight kotlin %}
 fun TODO(): Nothing = throw NotImplementedError()
 {% endhighlight %}
 
 `TODO` fonksiyonu ile bir özelliğin henüz kullanıma hazır olmadığını belirtebiliriz. 
 
-{% highlight java %}
+{% highlight kotlin %}
 fun vipFeature() {
     TODO("VIP")
 }
@@ -67,7 +67,7 @@ Exception in thread "main" kotlin.NotImplementedError: An operation is not imple
 
 
 # apply ()
-{% highlight java %}
+{% highlight kotlin %}
 fun <T> T.apply(f: T.() -> Unit): T { f(); return this }
 {% endhighlight %}
 
@@ -76,7 +76,7 @@ fun <T> T.apply(f: T.() -> Unit): T { f(); return this }
 
 Bir instance üzerinde değişiklikler yapıp sonra aynı instance'ı geri dönmek istediğimizde kullanılabilir. Örneğin:
 
-{% highlight java %}
+{% highlight kotlin %}
 //Kotlin
 Socket().apply {
     soTimeout = 10000
@@ -87,7 +87,7 @@ Socket().apply {
 
 İstenilen adrese (host ve port) istenilen özelliklere sahip bir socket bağlantısı kurmak için kullanılan yukarıdaki kodun Java karşılığı aşağıdaki gibidir:
 
-{% highlight java %}
+{% highlight kotlin %}
 //Java
 try {
     Socket socket = new Socket();
@@ -101,13 +101,13 @@ try {
 {% endhighlight %}
 
 # let () 
-{% highlight java %}
+{% highlight kotlin %}
 fun <T, R> T.let(f: (T) -> R): R = f(this)
 {% endhighlight %}
 
 `let`, `apply`'a benzer fakat uygulandığı instance'ı değil instance'ı parametre alan lambda'nın sonucunu döner. Java'daki `if (myObject != null)` ifadesinin Kotlin'deki karşılığı `let` olabilir. 
 
-{% highlight java %}
+{% highlight kotlin %}
 class User(val id: String, val name: String, val age: Int)
 
 val age = db.findUser("123")?.let {
@@ -123,13 +123,13 @@ Yukarıdaki örnekte  `let` ile ilgili 3 özellik gözüküyor:
 
 # with ()
 
-{% highlight java %}
+{% highlight kotlin %}
 fun <T, R> with(receiver: T, block: T.() -> R): R = receiver.block()
 {% endhighlight %}
 
 `with()` herhangi bir tipe ait olmayan `top-level` bir fonksiyondur. Aşağıdaki örnekteki gibi bir instance'ın farklı metodlarını peş peşe çağırdığımız zaman instance'ın değişken adını tekrar tekrar yazmak istemediğimizde kullanılabilir.
 
-{% highlight java %}
+{% highlight kotlin %}
 val dialog = Dialog()
 with(dialog) {
     title = "Do you want to save the changes?"
@@ -142,7 +142,7 @@ with(dialog) {
 # lazy ()
 `lazy` metodu sayesinde masraflı bir metodun çağırılmasını, ilk ihtiyaç duyulan ana kadar erteleyebiliriz. 
 
-{% highlight java %}
+{% highlight kotlin %}
 val lazyUser = lazy { db.findUser("2") }
 //database'e henuz gidilmedi
 
@@ -161,7 +161,7 @@ Kotlin compiler'ın ürettigi byte code Java 6 desteklediği için `use`, [AutoC
 
 Aşağıdaki örnek `project.properties` dosyasını açıyor, okuyor ve işi bitince otomatik olarak kapatıyor:
 
-{% highlight java %}
+{% highlight kotlin %}
 val projectProperties = Properties()
 Files.newInputStream(Paths.get("project.properties")).use { inputStream ->
     projectProperties.load(inputStream)
@@ -173,7 +173,7 @@ Files.newInputStream(Paths.get("project.properties")).use { inputStream ->
 
 Kotlin'de Java'daki `synchronized` keyword'u yoktur. Java'daki `synchronized` bloklarının yerine Kotlin'de  standard library'deki `synchronized()` fonksiyonu kullanılabilir.
 
-{% highlight java %}
+{% highlight kotlin %}
 val lock = Object()
 
 synchronized(lock, { /* thread-safe block */ })

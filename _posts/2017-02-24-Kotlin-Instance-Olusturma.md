@@ -7,7 +7,7 @@ Bu yazıda `Constructor`'lardan ve class instance'ları oluşturmanın farklı y
 
 Kotlin'de sınıflar *bir* tane `primary constructor`'a ve bir veya birden fazla `secondary constructor`'a  sahip olabilirler. Aşağıda 2 parametre alan (name ve speed) primary constructor örneği görüyorsunuz. Primary constructor tanımı class isminin hemen ardından başlar. Constructor parametrelerinin başındaki `val` ve `var` sayesinde Kotlin compiler _name_ ve _speed_ adında property'leri otomatik olarak oluşturur.
 
-{% highlight java %}
+{% highlight kotlin %}
 class Monster(val name: String, var speed: Int)
 
 fun main(args: Array<String>) {
@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
 
 Primary constructor'in tüm parametreleri için default değerler tanımlanırsa kotlin compiler parametre almayan ve field'lara default değerleri atayan bir constructor daha yaratır. 
 
-{% highlight java %}
+{% highlight kotlin %}
 class Weapon(val damage: Int = 10, val range: Int = 100)
 
 fun main(args: Array<String>) {
@@ -29,7 +29,7 @@ fun main(args: Array<String>) {
 
 Primary construct içine kod yazılmaz. Init işlemleri için  aşağıdaki örnekte olduğu gibi `initializer block`'lar kullanılır.
 
-{% highlight java %}
+{% highlight kotlin %}
 class Monster(val name: String, var speed: Int) {
     init {
         //Initialization code ...
@@ -39,7 +39,7 @@ class Monster(val name: String, var speed: Int) {
 
 Secondary constructor'lar birden fazla olabilir ve tanımlanırken aşağıdaki örnekteki gibi `constructor` keyword kullanılır. Class'ın bir primary constructor'ı varsa primary constructor'a `this` ile gönderme yapmak gerekir:
 
-{% highlight java %}
+{% highlight kotlin %}
 class Node(name: String) {
     constructor(name: String, parent: Node) : this(name)
 }
@@ -49,7 +49,7 @@ class Node(name: String) {
 
 Aksini belirtmediğimiz sürece Kotlin'de constructor'lar `public`'tir. Aşağıdaki örnekte constructor'ı gizlenmiş bir class örneği görebilirsiniz: 
 
-{% highlight java %}
+{% highlight kotlin %}
 class Spell private constructor(val level:Int, val duration:Int) {
     companion object {
         fun acidSplash() = Spell(1, 10)
@@ -69,7 +69,7 @@ Bu örnekte, oluşturmak istedigimiz sınıfın instance'ını dönen public `st
 * Static factory method'lara anlamlı isimler verebiliriz. `acidSplash` ve `invisibility` gibi.
 * Constructor'lar her çağırıldıklarında yeni bir instance oluşur, fakat static factory method'lar her çağırıldıklarında yeni bir instance yaratmak zorunda değildir. Aşağıdaki örnekte olduğu gibi daha önceden yaratılmış ve cache'lenmiş bir instance dönebilirler. 
 
-{% highlight java %}
+{% highlight kotlin %}
 class Error private constructor(val code: Int, val message: String) {
     init {
         println("Error $code $message created.")
@@ -93,7 +93,7 @@ class Error private constructor(val code: Int, val message: String) {
 Yukarıdaki örnek'te Kotlin'e özel iki özellik var:
 
 ### 1. Lazy : `Delegated properties`
-{% highlight java %}
+{% highlight kotlin %}
 private val errors: MutableMap<Int, Error> by lazy {mutableMapOf<Int, Error>() }
 {% endhighlight %}
 _Error_ sınıfının _errors_ field'ının oluşması `lazy` tanımlandı. Bu şu demek oluyor, _errors_ adındakı `map`'e ilk kez erişildiğinde yeni bir _map_ instance yaratılır ve daha sonraki erişimlerde bu instance kullanılır. Bu mekanizmaya Kotlin'de [Delegated Properties](https://kotlinlang.org/docs/reference/delegated-properties.html) adı veriliyor. Delegate'lerden başka bir yazıda daha detaylı bahsedeceğim.
@@ -107,7 +107,7 @@ Karmaşık sınıfların instance'larını oluşturmak istediğimizde bir çok o
 
 Yine bir örnek üzerinden gidelim. Kullanıcılara uyarı mesajı göstermek için kullanacağımız bir `Dialog` sınıfımız olsun. Başlık, mesaj, renkler ve dialog kapatıldığında çalıştırmak istediğimiz bir code bloğunu parametre olarak alan bir constructor aşağıdaki gibi tanımlanabilir.
 
-{% highlight java %}
+{% highlight kotlin %}
 class Dialog(
         val title: String,
         val message: String,
@@ -128,7 +128,7 @@ fun main(args: Array<String>) {
 
 Sadece `title` ve `message` parametreleri verip default renklerde ve kapatıldığında ekstra birşey yapmasını istemediğimiz bir dialog oluşturmak istersek aşağıdaki gibi bir secondary constructor ekleyebiliriz.
 
-{% highlight java %}
+{% highlight kotlin %}
 class Dialog(
         val title: String,
         val message: String,
@@ -161,7 +161,7 @@ Tekrar bizim örneğimize dönecek olursak; `init` fonksiyonu parametre olarak D
 
 Son olarak, aşağıdaki kullanım örneklerine bakarak, builder pattern'in  karmaşık instance'ları oluştururken okuması ve kullanımı kolay kod yazmamıza yardım ettiğini açıkça görebiliriz.
 
-{% highlight java %}
+{% highlight kotlin %}
 val errorDialog = Dialog.build("Uzgunuz", "Beklenmedik bir hata olustu") {
     titleColor = Color.RED
     bodyColor = Color.YELLOW
