@@ -171,4 +171,4 @@ https://farm4.staticflickr.com/3948/32547078094_e751d10e40.jpg
 ...
 </pre>
 
-Bir sonraki yazida [Sequence](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/)'lardan yani `lazy` collection'lardan bahsedeceğim.
+Bir sonraki yazida [Sequence](/development/kotlin/2017/03/23/Kotlin-Sequences.html)'lardan yani `lazy` collection'lardan bahsedeceğim.
