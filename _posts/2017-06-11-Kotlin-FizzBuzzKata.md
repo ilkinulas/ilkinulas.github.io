@@ -186,7 +186,7 @@ fun fizzBuzz(n: Int): String = (1..n).map {
 Aynı fonksiyonu aşağıdaki gibi tek satır olarak yazabiliriz. Beraber çalıştığınız insanları seviyorsanız bunu yapmayın :)
 
 {% highlight kotlin %}
-fun fizzBuzz_10(n: Int): String = (1..n).map { mapOf(0 to it, it % 3 to "Fizz", it % 5 to "Buzz", it % 15 to "FizzBuzz")[0] }.joinToString("")
+fun fizzBuzz(n: Int): String = (1..n).map { mapOf(0 to it, it % 3 to "Fizz", it % 5 to "Buzz", it % 15 to "FizzBuzz")[0] }.joinToString(", ")
 {% endhighlight %}
 
 ## 9. Magic Number (2548493554) çözümü
