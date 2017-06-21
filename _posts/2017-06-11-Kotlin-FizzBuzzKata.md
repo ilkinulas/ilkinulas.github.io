@@ -170,7 +170,26 @@ fun fizzBuzz(n: Int): String {
 }
 {% endhighlight %}
 
-## 8. Magic Number (2548493554) çözümü
+## 8. Map veriyapısı yardımıyla çözüm
+
+Aşağıdaki çözümde her iterasyonda yeni bir map instance'ı yaratılıyor. Bu çözümü iyi bir çözüm olduğu için eklemedim. Düşündüğümüzde ne kadar farklı şekillerde çözümler üretilebileceğini göstermek amacım.
+
+{% highlight kotlin %}
+fun fizzBuzz(n: Int): String = (1..n).map {
+        mapOf(0 to it,
+            it % 3 to "Fizz",
+            it % 5 to "Buzz",
+            it % 15 to "FizzBuzz")[0] }.joinToString(", ")
+
+{% endhighlight %}
+
+Aynı fonksiyonu aşağıdaki gibi tek satır olarak yazabiliriz. Beraber çalıştığınız insanları seviyorsanız bunu yapmayın :)
+
+{% highlight kotlin %}
+fun fizzBuzz_10(n: Int): String = (1..n).map { mapOf(0 to it, it % 3 to "Fizz", it % 5 to "Buzz", it % 15 to "FizzBuzz")[0] }.joinToString("")
+{% endhighlight %}
+
+## 9. Magic Number (2548493554) çözümü
 
 Yazıyı buraya kadar sıkılmadan takip edenler için bonusu en sona sakladım :)
 
@@ -212,4 +231,4 @@ fun main(args: Array<String>) {
 }
 {% endhighlight %}
 
-İşte gördünüz, FizzBuzz gibi basit bir problem için bile 8 farklı çözüm ortaya çıktı ve bu çözümlerin her birinde Kotlin programlama dilinin farklı özelliklerini kullanma fırsatı bulduk. Siz de benim gibi mesleğini seven bir yazılımcıysanız ve iyi bir performans ortaya koymak istiyorsanız bol bol pratik yapın ve kod kata yapmayı alışkanlık haline getirin.
+İşte gördünüz, FizzBuzz gibi basit bir problem için bile 9 farklı çözüm ortaya çıktı ve bu çözümlerin her birinde Kotlin programlama dilinin farklı özelliklerini kullanma fırsatı bulduk. Siz de benim gibi mesleğini seven bir yazılımcıysanız ve iyi bir performans ortaya koymak istiyorsanız bol bol pratik yapın ve kod kata yapmayı alışkanlık haline getirin.
