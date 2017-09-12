@@ -24,12 +24,12 @@ List of Podcasts I like to listen:
 		</td>
 	</tr>
 	<tr>
-		<td class="podcastImage"> 
-			<img src="/assets/podcasts/developer_on_fire.jpg" class="thinborder"/> 
+		<td class="podcastImage">
+			<img src="/assets/podcasts/gotime.jpg"  class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
-			Podcast with inspiring interviews with successful software developers, architects, testers, and other professionals with stories of success, failure, excellence, and inspiration. <a href="http://developeronfire.com">http://developeronfire.com</a>
-		</td>		
+			A panel of Go experts and special guests discuss the Go programming language, the community, and everything in between.  Topics include Golang, DevOps, web development, infrastructure, Kubernetes, and more. <a href="https://changelog.com/gotime"> https://changelog.com/gotime </a>
+		</td>
 	</tr>
 	<tr>
 		<td class="podcastImage">
@@ -41,12 +41,39 @@ List of Podcasts I like to listen:
 	</tr>
 	<tr>
 		<td class="podcastImage">
+			<img src="/assets/podcasts/talkingkotlin.jpg"  class="thinborder"/> 
+		</td>
+		<td class="podcastDesc">
+			 A podcast that covers the Kotlin programming language, as well as related technologies. 
+			 <a href="http://talkingkotlin.com/">http://talkingkotlin.com/</a>
+		</td>		
+	</tr>
+	<tr>
+		<td class="podcastImage">
 			<img src="/assets/podcasts/fragmented.jpg" class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
 			Fragmented is the Android developer podcast where Donn Felker and Kaushik Gopal talk about building good software and becoming better Android developers. <a href="http://fragmentedpodcast.com/">http://fragmentedpodcast.com/</a>
 		</td>		
 	</tr>
+	<tr>
+		<td class="podcastImage">
+			<img src="/assets/podcasts/mappingthejourney.jpg" class="thinborder"/> 
+		</td>
+		<td class="podcastDesc">
+			 Interviews with people who are making tremendous strides in tech, yet whose stories are seldom heard. Listen to this podcast if you want to know the people behind the technology you use every day.
+			 <a href="http://mappingthejourney.com/">http://mappingthejourney.com/</a>
+		</td>		
+	</tr>	
+	<tr>
+		<td class="podcastImage">
+			<img src="/assets/podcasts/engcultureinfoq.jpg" class="thinborder"/> 
+		</td>
+		<td class="podcastDesc">
+			Discussions on intentional corporate culture and software management approaches.
+			<a href="https://www.infoq.com/culture-methods/podcasts/">https://www.infoq.com/culture-methods/podcasts/</a>
+		</td>		
+	</tr>	
 	<tr>
 		<td class="podcastImage">
 			<img src="/assets/podcasts/hanselminutes.jpg" class="thinborder"/> 
@@ -81,14 +108,6 @@ List of Podcasts I like to listen:
 	</tr>
 	<tr>
 		<td class="podcastImage">
-			<img src="/assets/podcasts/debug_log.jpg" class="thinborder"/> 
-		</td>
-		<td class="podcastDesc">
-			A podcast about game development in Unity3D. <a href="http://thedebuglog.com/">http://thedebuglog.com/</a>
-		</td>		
-	</tr>	
-	<tr>
-		<td class="podcastImage">
 			<img src="/assets/podcasts/ted_talks.jpg" class="thinborder"/> 
 		</td>
 		<td class="podcastDesc">
@@ -109,6 +128,22 @@ List of Podcasts I like to listen:
 		</td>
 		<td class="podcastDesc">
 			A podcast by Thoughtworkers. They usually talk about software development and software development processes. <a href="https://www.thoughtworks.com/">https://www.thoughtworks.com/</a>
+		</td>		
+	</tr>		
+	<tr>
+		<td class="podcastImage">
+			<img src="/assets/podcasts/acikbilim.jpg" class="thinborder"/> 
+		</td>
+		<td class="podcastDesc">
+			A Turkish podcast about science and skepticism. <a href="http://www.acikbilim.com">http://www.acikbilim.com</a>
+		</td>		
+	</tr>		
+	<tr>
+		<td class="podcastImage">
+			<img src="/assets/podcasts/yalansavar.jpg" class="thinborder"/> 
+		</td>
+		<td class="podcastDesc">
+	 		The official podcast of the <a href="https://yalansavar.org/">Yalansavar</a> team. They talk about skepticism and <a href="http://philosophy.hku.hk/think/critical/ct.php">critical thinking</a>.
 		</td>		
 	</tr>		
 </table>
