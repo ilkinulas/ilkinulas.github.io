@@ -1,11 +1,10 @@
 ---
 layout: post
-title: JUnit ve Docker Yardımıyla Kolay Entegrasyon Testleri
+title: JUnit @Rule'ları
 categories: development test junit docker
 ---
-Yeni bir yazı serisine başlıyorum. Bu seride entegrasyon testlerini `JUnit` ve `Docker` yardımıyla nasıl yazdığımı anlatacağım.
+JUnit ve Docker kullanarak entegrasyon testleri yazmayı anlattığım yazı serisinin birinci bölümüne [buradan](development/test/junit/docker/2018/02/10/entegrasyon-testleri-yazmali-miyiz.html) erişebilirsiniz. Serinin bu ikinci yazısında, JUnit ve JUnit'in az bilinen fakat entegrasyon testleri yazarken kullanılması gereken bir özelliğinden, [@Rule](https://github.com/junit-team/junit4/wiki/Rules)'lardan bahsedeceğim. [JUnit5](https://junit.org/junit5/)'e henüz geçmediğim için örnekler [JUnit4](https://junit.org/junit4/) üzerinden olacak. Daha önce de [yazdığım](https://www.google.com.tr/search?q=kotlin+site%3Ailkinulas.github.io&oq=kotlin+site%3Ailkinulas.github.io) sebeplerden dolayı, bu yazı serisinde programlama dili olarak `Kotlin` kullanacağım.
 
-Serinin ilk bölümü olan bu yazıda JUnit ve JUnit'in az bilinen fakat entegrasyon testleri yazarken kullanılması gereken bir özelliğinden, [@Rule](https://github.com/junit-team/junit4/wiki/Rules)'lardan bahsedeceğim. [JUnit5](https://junit.org/junit5/)'e henüz geçmediğim için örnekler [JUnit4](https://junit.org/junit4/) üzerinden olacak. Daha önce de [yazdığım](https://www.google.com.tr/search?q=kotlin+site%3Ailkinulas.github.io&oq=kotlin+site%3Ailkinulas.github.io) sebeplerden dolayı, bu yazı serisinde programlama dili olarak Kotlin kullanacağım.
 
 Unit testlerin ortak ihtiyaçlarını kod tekrarı yapmadan ([DRY](http://wiki.c2.com/?DontRepeatYourself)) nasıl karşılarız? Bu soru 10 sene önce bana sorulmuş olsaydı cevabım  _inheritence_ olurdu. Bir tane `AbstracTest` sınıfı yaratırdım. Testlerin ortak ihtiyaçlarını bu abstract sınıfta tanımlardım ve tüm unit testlerimi bu `AbstractTest` sınıfından türetirdim. Fakat Object Oriented programlama dillerinin güçlü bir özelliği olan _inheritence_'ı _code reuse_ için kullanmamalıyız. _Code reuse_ söz konusu olduğunda öncelikle `composition`'ı düşünmemiz gerekir. 
 
