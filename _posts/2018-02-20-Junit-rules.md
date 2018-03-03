@@ -115,6 +115,90 @@ companion object {
 }
 {% endhighlight %}
 
+### RuleChain
+Test sınıfımızda birden fazla `@ClassRule` varsa bu rule'ların uygulanma sırası kullandığımız JVM'deki `reflection API`'ye bağlıdır. Yani rule'ların çalışma sırası belirsizdir. Rule'ların bizim belirlediğimiz bir sırada çalışmasını istiyorsak [`RuleChain`](https://junit.org/junit4/javadoc/4.12/org/junit/rules/RuleChain.html) kullanabiliriz.
+
+Bir [redis](https://redis.io/) sunucusu ile olan entegrasyonu test ettiğimizi düşünün. Testler başlamadan önce redis sunucusunu ayağa kaldırmamız gerekir. Redis process'inin başlamış olması, sunucunun testlerde kullanılabilir hale geldiği anlamına gelmez. Varsayılan redis portundan (6379) istekleri dinliyor olması gerekir. Redis entegrasyon testlerini sağlıklı bir şekilde çalıştırmak için iki farklı @ClassRule rule yazabiliriz:
+* Birinci @ClassRule'un görevi redis sunucusunu baslatmak ve test tamamlandığında kapatmak.
+* İkinci @ClassRule'un görevi ise redis sunucu 6379 portundan isteklere cevap vermeye başlayana kadar beklemek ve cevap vermeye başlar başlamaz testleri çalıştırmak. Yani redis için `healthcheck` yapmak.
+
+Aşağıdaki `RedisIntegrationTest` sınıfında, redis ve redisHealthcheck adında iki tane junit rule tanımladım. RuleChain sayesinde de bu rule'ların çalışma sırasını belirliyorum.
+{% highlight kotlin %}
+class RedisIntegrationTest {
+    companion object {
+        val redis = RedisRule()
+        val redisHealthcheck = HealthCheckRule(fun() = SuccessOrFailure.success(), 10, 100)
+
+        @ClassRule
+        @JvmField
+        val ruleChain = RuleChain.outerRule(redis).around(redisHealthcheck)
+    }
+
+    @Test
+    fun test_redis_integration_works() {
+        //ignoring the details of the test.
+        println("Running integration test")
+    }
+}
+{% endhighlight %}
+
+
+`RedisRule` bir [ExternalRule](https://junit.org/junit4/javadoc/4.12/org/junit/rules/ExternalResource.html) olarak tanımlandı. Şimdilik içini boş bırakıyorum. Gelecek yazılarda docker container'ları ve junit rule'ları ile Redis sunucusunu entegrasyon testleri için başlatıp kapatmayı göstereceğim.
+{% highlight kotlin %}
+class RedisRule : ExternalResource() {
+    override fun before() {
+        println("Starting redis server")
+        //Start redis server
+    }
+
+    override fun after() {
+        println("Stopping redis server")
+        //Stop redis server
+    }
+}
+{% endhighlight %}
+
+Herhangi bir ExternalResource'un (redis, oracle, kafka, başka bir microservis....) testlerde kullanıma hazır olup olmadığını kontrol etmek için kullandığım `HealthCheckRule` da aşağıdaki gibi:
+
+{% highlight kotlin %}
+class HealthCheckRule(val healthcheck: () -> SuccessOrFailure, val retryCount: Int, val delay: Long) : TestRule {
+    override fun apply(base: Statement, description: Description): Statement {
+        return object : Statement() {
+            override fun evaluate() {
+                for (i in (1..retryCount)) {
+                    if (healthcheck().succeeded()) {
+                        println("Healthcheck pass.")
+                        base.evaluate()
+                        return
+                    }
+                    Thread.sleep(delay)
+                }
+                throw RuntimeException("Healthcheck failed")
+            }
+        }
+    }
+}
+
+class SuccessOrFailure(private val failMessage: String?) {
+    companion object {
+        fun success() = SuccessOrFailure(null)
+        fun fail(message: String) = SuccessOrFailure(message)
+    }
+
+    fun failed() = failMessage != null
+    fun succeeded() = failMessage == null
+}
+{% endhighlight %}
+
+RedisIntegrationTest sınıfındaki testi çalıştırdığımda aşağıdaki gibi bir çıktı alırım.
+
+{% highlight kotlin %}
+Starting redis server
+Healthcheck pass.
+Running integration test
+Stopping redis server
+{% endhighlight %}
+
 JUnit test Rule'ları ile başladığımız bu yazı dizisini Docker'a nasıl bağlayacağımı merak ediyorsanız ufak bir ipucu vereyim : [Testcontainers](https://www.testcontainers.org/). Rule'lar sayesinde testler başlamadan önce Docker container'larını ayağa kaldırıp testlerimizde kullanacağız, testler tamamlandığında da container'ları kapatacağız. Bir sonraki yazıda buluşmak üzere. 
 
 > Kodunuzu automated test'lerden mahrum etmeyin! -anonim
