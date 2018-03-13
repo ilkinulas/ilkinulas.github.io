@@ -7,6 +7,8 @@ Yeni bir yazı serisine başlıyorum. Bu seride entegrasyon testlerini `JUnit` v
 
 > JUnit `@Rule`'larından bahsettiğim serinin ikinci yazısını [buradan okuyabilirsiniz](/development/test/junit/docker/2018/02/20/Junit-rules.html).
 
+> Docker ve Docker Compose'dan bahsettiğim serinin üçüncü yazısını [buradan okuyabilirsiniz](/development/test/junit/docker/2018/03/11/docker-ve-docker-compose.html).
+
 9 Eylül 1947'de (71 yıl önce) Tümamiral ve aynı zamanda bir bilim kadını olan [Grace Hopper](https://www.biography.com/people/grace-hopper-21406809) bilgisayar tarihinin ilk bug'ını 🐞 kayıt altına [almış](http://www.computerhistory.org/tdih/September/9/). Aşağıdaki resimde Grace Hopper'ın el yazısı ile *Harvard Mark II* adındaki (elektro-mekanik) bilgisayarın kayıt defterine yazılmış hata raporunu görüyorsunuz.
 
 ![First ever bug](/assets/integration_tests/first_recorded_bug.jpg){: .center-image }
