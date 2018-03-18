@@ -89,18 +89,43 @@ bad5d15f086a        host                    host                local
 1596fd786600        none                    null                local
 ```
 
-Aynı docker-compose.yml dosyasında tanımlanan servisler aynı network içerisinde oldukları için birbirlerine erişimlerinde problem olmaz. Servis adı üzerinden (IP adresine gerek kalmadan) haberleşebilirler. `todoapp` container'ı için DB_URL ortam değişkeni tanımlarken database servisinin IP'sini değil aşağıdaki gibi adını vermemiz yetiyor:
+Aynı docker-compose.yml dosyasında tanımlanan servisler aynı network içerisinde oldukları için birbirlerinı görebilirler. Servis adı üzerinden (IP adresine gerek kalmadan) haberleşebilirler. `todoapp` container'ı için DB_URL ortam değişkeni tanımlarken database servisinin IP'sini değil aşağıdaki gibi adını vermemiz yetiyor:
 
 `jdbc:mysql://database:3306/tododb`
 
-Docker network'u dışarısından container içinde çalışan servislere erişmek istersek container'daki internal port'ları external (dışarıdan erişilebilen) port'lar ile eşleştirmemiz gerekir. Bizim örneğimizde `app` servisimizin 9000 portunun docker network'ünün dışından da erişilebilir hale getirildiğini görüyorsunuz.
+Docker network'u dışından, container içinde çalışan servislere erişmek istersek container'daki internal port'ları external (dışarıdan erişilebilen) port'lar ile eşleştirmemiz gerekir. Aşağıdaki örnekte container'ın 9000 portu, container'ı çalıştıran host'un 9000 portuna bağlanmış. Böylece container içindeki servisin 9000 portuna container dışından da erişilebilir.
 
 ```
 ports:
     - 9000:9000
 ```
 
-Bu sayede `docker-compose up` ile servisleri başlattığımızda `http://localhost:9000` adresinden uygulamaya erişebiliyoruz.
+Docker'a `9000:9000` port eşleşmesini söylemeseydik, docker kullanımda olmayan rastgele bir portu 9000 portu ile eşleştirecekti. Bu durumda container dışından uygulamaya erişebilmek için önce servis verdiği portu bulmamız gerekecekti.
+
+Önce `docker ps` komutu ile container id'sini bulalım. 
+```
+$ docker ps
+CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                     NAMES
+f7064ba67040        mysql:5.7.21            "docker-entrypoint.s…"   8 seconds ago       Up 14 seconds       0.0.0.0:33378->3306/tcp   kotlintodoapp_database_1
+ebeb5f4e846d        ilkinulas/todoapp:1.0   "/bin/sh -c 'java -D…"   8 seconds ago       Up 15 seconds       0.0.0.0:33377->9000/tcp   kotlintodoapp_app_1
+```
+
+`ilkinulas/todoapp:1.0` image'ını çalıştıran container'ın id'si `ebeb5f4e846d`. Bu container'ın port eşleşmelerini görmek için `docker port` komutunu kullanabiliriz.
+
+```
+$ docker port ebeb5f4e846d
+9000/tcp -> 0.0.0.0:33377
+```
+
+Docker komutlarını çalıştırırken container id'nin hepsini yazmaya gerek yok. Çalışan diğer container'lardan ayırt edilebilecek şekilde ilk birkaç karakterini yazmak yeterli. Örneğin:
+
+```
+$ docker port ebe
+9000/tcp -> 0.0.0.0:33377
+```
+Container'ın 9000 portunun host makinedeki 33377 portuna map edildiğini gördükten sonra `http://localhost:33377` adresinden uygulamaya erişebiliriz. Siz kendi bilgisayarınızda bunu denerseniz, docker farklı bir port atayabilir.
+
+Aynı container'dan birden fazla başlatacaksanız host makinenin `hard-coded` portlarını kullanmak yerine docker engine'in bizim için boş portları seçmesi daha kullanışlı olur. 
 
 Docker ve docker-compose araçlarını öğrenmenin en iyi yolu bana sorarsanız bir demo uygulama yapıp onu container içerisinde çalıştırmak. Bu amaçla geliştirdiğim demo uygulamasının [README sayfasında](https://github.com/ilkinulas/kotlin-todo-app) docker imajının build edilmesi ve docker repository'ye publish edilmesi ile ilgili bilgi bulabilirsiniz.
 
